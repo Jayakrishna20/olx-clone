@@ -1,41 +1,41 @@
-import React, { useState } from 'react';
-import Logo from '../../olx-logo.png';
+import React, { useState } from "react";
+import Logo from "../../olx-logo.png";
 // import { FirebaseContext } from '../../store/FirebaseContext';
-import './Signup.css';
+import "./Signup.css";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth, db } from '../../firebase/config';
-import { addDoc, collection } from 'firebase/firestore'
-import { useNavigate } from 'react-router-dom';
+import { auth, db } from "../../firebase/config";
+import { addDoc, collection } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
   const navigate = useNavigate();
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
   // const {firebase} = useContext(FirebaseContext)
   const handleSubmit = (e) => {
     e.preventDefault();
     createUserWithEmailAndPassword(auth, email, password)
       .then((auth) => {
-        updateProfile(auth.user,{displayName:username}).then(() => {
+        updateProfile(auth.user, { displayName: username }).then(() => {
           addDoc(collection(db, "users"), {
             id: auth.user.uid,
             username: username,
-            phone: phone
+            phone: phone,
           }).then(() => {
             navigate("/login", { replace: true });
-          })
-        })
+          });
+        });
       })
-      .catch(error => console.error(error))
-  }
+      .catch((error) => console.error(error));
+  };
 
   return (
     <div>
       <div className="signupParentDiv">
-        <img width="200px" height="200px" src={Logo}></img>
-        <form onSubmit={handleSubmit} >
+        <img width="200px" height="200px" src={Logo} alt="Logo"></img>
+        <form onSubmit={handleSubmit}>
           <label htmlFor="fname">Username</label>
           <br />
           <input
@@ -87,7 +87,15 @@ export default function Signup() {
           <br />
           <button>Signup</button>
         </form>
-        <a>Login</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;Already have an Account?
+        <a
+          href=""
+          onClick={() => {
+            navigate("/login", { replace: true });
+          }}
+        >
+          Login
+        </a>
       </div>
     </div>
   );

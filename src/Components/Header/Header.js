@@ -1,16 +1,16 @@
-import React, { useContext } from 'react';
-import {useNavigate} from 'react-router-dom'
-import './Header.css';
-import OlxLogo from '../../assets/OlxLogo';
-import Search from '../../assets/Search';
-import Arrow from '../../assets/Arrow';
-import SellButton from '../../assets/SellButton';
-import SellButtonPlus from '../../assets/SellButtonPlus';
-import { AuthContext } from '../../store/Context';
-import { auth } from '../../firebase/config'
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import "./Header.css";
+import OlxLogo from "../../assets/OlxLogo";
+import Search from "../../assets/Search";
+import Arrow from "../../assets/Arrow";
+import SellButton from "../../assets/SellButton";
+import SellButtonPlus from "../../assets/SellButtonPlus";
+import { AuthContext } from "../../store/Context";
+import { auth } from "../../firebase/config";
 function Header() {
-  const { user } = useContext(AuthContext)
-  const navigate = useNavigate()
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   return (
     <div className="headerParentDiv">
       <div className="headerChildDiv">
@@ -20,7 +20,7 @@ function Header() {
         <div className="placeSearch">
           <Search></Search>
           <input type="text" />
-          <Arrow></Arrow>
+          {/* <Arrow></Arrow> */}
         </div>
         <div className="productSearch">
           <div className="input">
@@ -35,16 +35,28 @@ function Header() {
         </div>
         <div className="language">
           <span> ENGLISH </span>
-          <Arrow></Arrow>
+          {/* <Arrow></Arrow> */}
         </div>
         <div className="loginPage">
-          <span>{user ? ` Welcome ${user.displayName}` : "Login"}</span>
+          <span
+            onClick={() => {
+              navigate("/login", { replace: true });
+            }}
+          >
+            {user ? ` Welcome ${user.displayName}` : "Signup"}
+          </span>
           <hr />
         </div>
-        {user && <span onClick={() => {
-          auth.signOut();
-          navigate("/login",{replace:true})
-        }} >Logout</span>}
+        {user && (
+          <span
+            onClick={() => {
+              auth.signOut();
+              navigate("/login", { replace: true });
+            }}
+          >
+            Logout
+          </span>
+        )}
         <div className="sellMenu">
           <SellButton></SellButton>
           <div className="sellMenuContent">

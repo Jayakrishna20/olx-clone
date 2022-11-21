@@ -1,24 +1,28 @@
-import React, { useState } from 'react';
-import {signInWithEmailAndPassword} from 'firebase/auth'
-import { auth } from '../../firebase/config'
-import Logo from '../../olx-logo.png';
-import './Login.css';
-import {useNavigate} from 'react-router-dom'
+import React, { useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase/config";
+import Logo from "../../olx-logo.png";
+import "./Login.css";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const handleLogin = (e) => {
     e.preventDefault();
-    signInWithEmailAndPassword(auth,email,password)
-    .then(() => {navigate("/",{replace:true})})
-    .catch(error => {alert(error.message)})
-  }
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        navigate("/", { replace: true });
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  };
   return (
     <div>
       <div className="loginParentDiv">
-        <img width="200px" height="200px" src={Logo}></img>
+        <img width="200px" height="200px" src={Logo} alt="Logo"></img>
         <form onSubmit={handleLogin}>
           <label htmlFor="fname">Email</label>
           <br />
@@ -47,7 +51,9 @@ function Login() {
           <br />
           <button>Login</button>
         </form>
-        <a>Signup</a>
+        <a href="" onClick={navigate("/signup", { replace: true })}>
+          Signup
+        </a>
       </div>
     </div>
   );
