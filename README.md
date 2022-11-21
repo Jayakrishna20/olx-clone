@@ -1,8 +1,24 @@
-# Getting Started with Create React App
+# Getting Started with OLX CLone
+
+Link:- https://jk-olx-clone.netlify.app/
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/412d231f-015e-436b-9991-ab7b6f53b28c/deploy-status)](https://app.netlify.com/sites/jk-olx-clone/deploys)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Steps to Follow 
+
 ## Available Scripts
+
+### `git clone`
+
+Clone this into your local system
+
+### `npm install`
+
+type in this cmd to install all the dependencies used in this app. 
+It is necessary to run this cmd for running this app locally.
+
 
 In the project directory, you can run:
 
