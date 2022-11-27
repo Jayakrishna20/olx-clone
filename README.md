@@ -1,6 +1,6 @@
 # Getting Started with OLX CLone
 
-### [Live Site]{https://jk-olx-clone.netlify.app/}
+### [Live Site](https://jk-olx-clone.netlify.app/)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/412d231f-015e-436b-9991-ab7b6f53b28c/deploy-status)](https://app.netlify.com/sites/jk-olx-clone/deploys)
 
